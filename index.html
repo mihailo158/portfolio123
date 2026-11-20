@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xwaret — Сайти, інтерактивний веб та візуал</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Прелоадер -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">XWARET<span>.</span></div>
+      <div class="preloader-bar"><div id="preloaderFill" class="preloader-fill"></div></div>
+      <div class="preloader-meta">
+        <span>LOADING EXPERIENCE</span>
+        <span id="preloaderCount">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Верхній лазерний прогрес скролу -->
+  <div id="scrollProgress" class="scroll-progress"></div>
+
+  <!-- Кастомний скляний курсор (для ПК) -->
+  <div id="cursorDot" class="cursor-dot"></div>
+  <div id="cursorRing" class="cursor-ring"><span id="cursorLabel"></span></div>
+
+  <!-- 3D WebGL сцена на весь екран -->
+  <canvas id="webglCanvas"></canvas>
+
+  <!-- Легка кіношна зернистість і сітка -->
+  <div class="noise-overlay"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Шапка (Liquid Glass) -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="#" class="logo scramble" data-text="XWARET.">XWARET<span>.</span></a>
+      <nav class="nav">
+        <a href="#about" class="nav-link">Про мене</a>
+        <a href="#work" class="nav-link">Кейси</a>
+        <a href="#formats" class="nav-link">Послуги</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contact" class="btn-nav magnetic" data-cursor="GO">Обговорити проєкт</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Головний екран -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="badge glass-pill reveal-hero">
+            <span class="pulse-dot"></span>
+            Відкритий до замовлень • Івано-Франківськ / Online
+          </div>
+
+          <h1 class="hero-title reveal-hero">
+            Створюю сайти, які <span class="accent-text scramble-auto" data-text="чіпляють із першої секунди">чіпляють із першої секунди</span> та приносять заявки
+          </h1>
+
+          <p class="hero-desc reveal-hero">
+            Я Михайло (<strong>Xwaret</strong>). Розробляю сучасні сайти під ключ з ефектними анімаціями та швидким завантаженням, а також допомагаю з базовою нарізкою Reels / Shorts, озвучкою та рекламними банерами.
+          </p>
+
+          <div class="hero-actions reveal-hero">
+            <a href="#contact" class="btn-primary magnetic" data-cursor="START">
+              <span>Обговорити проєкт</span>
+            </a>
+            <a href="https://t.me/klm_145" target="_blank" class="btn-liquid magnetic" data-cursor="TG">
+              <span>Telegram @klm_145 ↗</span>
+            </a>
+          </div>
+
+          <div class="hero-stats reveal-hero">
+            <div class="stat-glass">
+              <strong><span class="counter" data-target="3">0</span> дні</strong>
+              <span>середній запуск лендінгу</span>
+            </div>
+            <div class="stat-glass">
+              <strong><span class="counter" data-target="0">0</span> грн/міс</strong>
+              <span>за базовий хостинг</span>
+            </div>
+            <div class="stat-glass">
+              <strong><span class="counter" data-target="100">0</span>%</strong>
+              <span>адаптив під смартфон</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Скляна 3D-картка профілю -->
+        <div class="hero-card-wrap reveal-hero">
+          <div class="profile-card liquid-glass tilt-card" data-cursor="XWARET">
+            <div class="glare"></div>
+            <div class="avatar-box">
+              <!-- Коли додаси своє фото, прибери блок avatar-placeholder і розкоментуй рядок нижче -->
+              <!-- <img src="avatar.jpg" alt="Михайло Xwaret"> -->
+              <div class="avatar-placeholder">
+                <span>X</span>
+                <small>CRIMSON DIGITAL</small>
+              </div>
+              <div class="avatar-scanline"></div>
+            </div>
+            <div class="profile-info">
+              <div class="profile-head">
+                <h3>Михайло <small>/ Xwaret</small></h3>
+                <span class="status-pill">Online</span>
+              </div>
+              <p>Web-розробка • Інтерактивні сайти • Візуал</p>
+            </div>
+            <div class="profile-meta">
+              <span>📍 Івано-Франківськ / працюю дистанційно</span>
+              <span>⚡ Прямий зв'язок без агентських націнок</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <span>КРУТИ ВНИЗ</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Подвійна рухома стрічка -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee marquee-1">
+        <div class="marquee-track">
+          <span>INTERACTIVE WEB</span> ✦ <span>LANDING PAGES</span> ✦ <span>LIQUID GLASS UI</span> ✦ <span>3D ANIMATIONS</span> ✦ <span>REELS & SHORTS</span> ✦ <span>AD BANNERS</span> ✦
+          <span>INTERACTIVE WEB</span> ✦ <span>LANDING PAGES</span> ✦ <span>LIQUID GLASS UI</span> ✦ <span>3D ANIMATIONS</span> ✦ <span>REELS & SHORTS</span> ✦ <span>AD BANNERS</span> ✦
+        </div>
+      </div>
+    </div>
+
+    <!-- Про мене (Bento Grid зі склом і 3D-нахилом) -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head gs-reveal">
+          <span class="section-tag">01 // Про мене</span>
+          <h2>Сучасний веб без зайвої води</h2>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card bento-wide liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <span class="bento-label">ПІДХІД ДО РОБОТИ</span>
+            <h3>Сайти, які не виглядають як нудні шаблони з 2015-го</h3>
+            <p>Мені 18 років, я фокусуюся на візуально сильних та швидких сайтах для локального бізнесу й особистих брендів. Темна або світла естетика, плавні анімації, чітка структура під заявки й жодних важких конструкторів, які гальмують на телефоні.</p>
+            <div class="mini-pills">
+              <span>Чиста верстка</span>
+              <span>Висока швидкість</span>
+              <span>Фокус на клієнта</span>
+              <span>Швидкі правки</span>
+            </div>
+          </div>
+
+          <div class="bento-card bento-crimson liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <span class="bento-label">СИЛЬНА НІША</span>
+            <h3>Розумію медичний бізнес зсередини</h3>
+            <p>Здобуваю медичну освіту, тому добре знаю, як мислять пацієнти стоматологій, клінік та приватних кабінетів. Розумію, які страхи треба закрити на сайті, щоб людина натиснула «Записатися».</p>
+          </div>
+
+          <div class="bento-card liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <span class="bento-label">ТЕХНОЛОГІЇ</span>
+            <h3>Що використовую</h3>
+            <div class="stack-grid">
+              <span>HTML5 / CSS3</span>
+              <span>JavaScript</span>
+              <span>GSAP / 3D WebGL</span>
+              <span>GitHub Pages</span>
+              <span>Форми заявок</span>
+              <span>Нарізка відео</span>
+              <span>Банери та графіка</span>
+            </div>
+          </div>
+
+          <div class="bento-card bento-wide liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <span class="bento-label">ДОДАТКОВИЙ ПЛЮС</span>
+            <h3>Можу паралельно закрити базовий контент для соцмереж</h3>
+            <p>Окрім розробки сайтів, допомагаю з простим оформленням контенту: нарізати ролик під Reels / Shorts / TikTok, накласти читабельні субтитри, зробити озвучку, додати рекламну плашку чи зібрати контрастний банер для реклами. Без переплат за «великі продакшни» — швидко і по ділу.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Портфоліо -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-head-row gs-reveal">
+          <div>
+            <span class="section-tag">02 // Портфоліо</span>
+            <h2>Кейси та напрямки</h2>
+          </div>
+          <div class="filter-bar">
+            <button class="filter-btn active magnetic" data-filter="all">Усі</button>
+            <button class="filter-btn magnetic" data-filter="web">Сайти</button>
+            <button class="filter-btn magnetic" data-filter="content">Відео та банери</button>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Головний живий кейс -->
+          <article class="project-card featured liquid-glass tilt-card gs-reveal" data-category="web" data-cursor="OPEN">
+            <div class="glare"></div>
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80" alt="DentaCare сайт стоматології">
+              <span class="project-badge live">LIVE ПРОЄКТ</span>
+            </div>
+            <div class="project-body">
+              <span class="project-cat">Веб-сайт • Стоматологія</span>
+              <h3>DentaCare — Сайт приватної клініки</h3>
+              <p>Преміальний темний лендінг для стоматології з акцентом на довіру, зрозумілі ціни та швидкий онлайн-запис пацієнта за 30 секунд.</p>
+              <ul class="case-details">
+                <li><strong>Інтерактив:</strong> плавні анімації, підсвітка карток за курсором, розкривний блок частих питань.</li>
+                <li><strong>Результат:</strong> повна адаптація під смартфон і робоча форма заявок, що надсилає дані прямо на пошту.</li>
+              </ul>
+              <div class="case-tags">
+                <span>HTML/CSS/JS</span>
+                <span>Dark UI</span>
+                <span>Онлайн-запис</span>
+                <span>0 грн хостинг</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://mihailo158.github.io/MyFirstWebsite/" target="_blank" class="btn-small magnetic">Дивитись наживо ↗</a>
+                <a href="#contact" class="btn-small ghost select-service magnetic" data-service="Створення сайту">Хочу схожий сайт</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Кейс 2: Сайт кав'ярні -->
+          <article class="project-card liquid-glass tilt-card gs-reveal" data-category="web" data-cursor="SOON">
+            <div class="glare"></div>
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Концепт сайту кав'ярні">
+              <span class="project-badge">У РОЗРОБЦІ</span>
+            </div>
+            <div class="project-body">
+              <span class="project-cat">Веб-сайт • HoReCa</span>
+              <h3>Кав'ярня — Меню та бронювання</h3>
+              <p>Наступний шоукейс у портфоліо: атмосферний сайт для закладу з інтерактивним меню напоїв, картою проїзду та швидкою формою броні.</p>
+              <div class="case-tags">
+                <span>HoReCa</span>
+                <span>Інтерактивне меню</span>
+                <span>Адаптив</span>
+              </div>
+              <div class="project-actions">
+                <a href="#contact" class="btn-small ghost select-service magnetic" data-service="Створення сайту">Замовити для свого закладу</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Кейс 3: Базова нарізка Reels/Shorts і банери -->
+          <article class="project-card liquid-glass tilt-card gs-reveal" data-category="content" data-cursor="ASK">
+            <div class="glare"></div>
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" alt="Нарізка відео та банери">
+              <span class="project-badge">КОНТЕНТ</span>
+            </div>
+            <div class="project-body">
+              <span class="project-cat">Reels / Shorts • Банери</span>
+              <h3>Оформлення коротких відео та рекламні банери</h3>
+              <p>Практичний монтаж для соцмереж без зайвих ускладнень: акуратна нарізка, накладання тексту й субтитрів, озвучка, вставка рекламного банера поверх відео та статичні банери для оголошень.</p>
+              <div class="case-tags">
+                <span>Нарізка відео</span>
+                <span>Текст / Озвучка</span>
+                <span>Оверлей-банери</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://t.me/klm_145" target="_blank" class="btn-small ghost magnetic">Обговорити в Telegram ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Послуги / Формати -->
+    <section id="formats" class="section">
+      <div class="container">
+        <div class="section-head gs-reveal">
+          <span class="section-tag">03 // Послуги</span>
+          <h2>Формати співпраці</h2>
+        </div>
+
+        <div class="grid three-cols">
+          <div class="format-card liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <div class="format-top">
+              <span class="format-time">Термін: 2–4 дні</span>
+              <h3>Сайт-візитівка або Лендінг</h3>
+              <p>Для клінік, стоматологій, барбершопів, кав'ярень, майстрів і малого бізнесу.</p>
+            </div>
+            <ul class="check-list">
+              <li>Сучасний дизайн із плавними анімаціями</li>
+              <li>Повна адаптація під телефон і ПК</li>
+              <li>Робоча форма заявок на вашу пошту</li>
+              <li>Кнопки швидкого зв'язку в Telegram / Instagram</li>
+              <li>Безкоштовне розміщення в інтернеті</li>
+            </ul>
+            <a href="#contact" class="btn-liquid full-btn select-service magnetic" data-service="Створення сайту">Обговорити сайт</a>
+          </div>
+
+          <div class="format-card format-featured liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <div class="format-top">
+              <span class="format-badge">ТОП ВИБІР</span>
+              <span class="format-time">Термін: 3–6 днів</span>
+              <h3>Інтерактивний WOW-сайт</h3>
+              <p>Для брендів, експертів і проєктів, яким потрібно миттєво виділитися візуалом.</p>
+            </div>
+            <ul class="check-list">
+              <li>Ефект рідкого скла (Liquid Glass) та 3D-елементи</li>
+              <li>Скрол-анімації, інтерактивні картки та переходи</li>
+              <li>Індивідуальна кольорова естетика під ваш бренд</li>
+              <li>Висока швидкість і плавність роботи</li>
+              <li>Підключення заявок + допомога з доменом</li>
+            </ul>
+            <a href="#contact" class="btn-primary full-btn select-service magnetic" data-service="WOW-сайт з анімаціями"><span>Хочу такий сайт</span></a>
+          </div>
+
+          <div class="format-card liquid-glass tilt-card gs-reveal">
+            <div class="glare"></div>
+            <div class="format-top">
+              <span class="format-time">Термін: 1–2 дні</span>
+              <h3>Відео-нарізка & Банери</h3>
+              <p>Простий, акуратний та бюджетний формат для регулярного контенту й реклами.</p>
+            </div>
+            <ul class="check-list">
+              <li>Нарізка коротких відео (Reels / Shorts / TikTok)</li>
+              <li>Накладання читабельного тексту та субтитрів</li>
+              <li>Додавання озвучки та фонової музики</li>
+              <li>Вставка рекламної банерки прямо у відео</li>
+              <li>Дизайн рекламних банерів та обкладинок</li>
+            </ul>
+            <a href="#contact" class="btn-liquid full-btn select-service magnetic" data-service="Нарізка відео / банери">Обговорити контент</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Етапи -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-head gs-reveal">
+          <span class="section-tag">04 // Процес</span>
+          <h2>Як ми запускаємо проєкт</h2>
+        </div>
+
+        <div class="grid four-cols">
+          <div class="step-card liquid-glass gs-reveal">
+            <span class="step-num">01</span>
+            <h3>Обговорення</h3>
+            <p>Пишете задачу в Telegram або через форму. За 15 хвилин фіксуємо структуру, стиль і терміни.</p>
+          </div>
+          <div class="step-card liquid-glass gs-reveal">
+            <span class="step-num">02</span>
+            <h3>Живе прев'ю</h3>
+            <p>Збираю робочий варіант сайту або відео і скидаю посилання, щоб ви самі все поклацали.</p>
+          </div>
+          <div class="step-card liquid-glass gs-reveal">
+            <span class="step-num">03</span>
+            <h3>Правки</h3>
+            <p>Коригуємо тексти, кольори чи деталі, доки все не виглядатиме саме так, як ви хотіли.</p>
+          </div>
+          <div class="step-card liquid-glass gs-reveal">
+            <span class="step-num">04</span>
+            <h3>Публікація</h3>
+            <p>Викладаю сайт онлайн, тестуємо отримання заявок на пошту й передаю вам усі файли.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container faq-wrap">
+        <div class="section-head gs-reveal">
+          <span class="section-tag">05 // FAQ</span>
+          <h2>Часті запитання</h2>
+        </div>
+
+        <div class="faq-list gs-reveal">
+          <div class="faq-item liquid-glass">
+            <button class="faq-question">
+              <span>Скільки коштує розробка сайту і від чого залежить ціна?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Вартість залежить від кількості секцій та рівня анімацій. Опишіть свою задачу в Telegram або у формі нижче — я оціню обсяг і назву точну ціну та термін до початку роботи.</p>
+            </div>
+          </div>
+
+          <div class="faq-item liquid-glass">
+            <button class="faq-question">
+              <span>Чи потрібно щомісяця платити за хостинг?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Ні. Базове розміщення сайту на GitHub Pages є безкоштовним і працює стабільно 24/7. Якщо захочете власну коротку адресу (наприклад, mybrand.com.ua), ви оплачуєте тільки домен раз на рік, а я допоможу все підключити.</p>
+            </div>
+          </div>
+
+          <div class="faq-item liquid-glass">
+            <button class="faq-question">
+              <span>Чи не будуть 3D-ефекти та анімації гальмувати на телефоні?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Усе оптимізується під мобільні пристрої: важкі курсорні ефекти на смартфонах вимикаються, а графіка підлаштовується під екран, щоб сторінка відкривалася плавно й швидко.</p>
+            </div>
+          </div>
+
+          <div class="faq-item liquid-glass">
+            <button class="faq-question">
+              <span>Як я буду отримувати заявки клієнтів із сайту?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Кожна заявка з форми миттєво приходить на вашу електронну пошту: ім'я, телефон або Telegram клієнта, обрана послуга і коментар. Обов'язково робимо тестову відправку разом перед здачею.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакти -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-box liquid-glass gs-reveal">
+          <div class="contact-info">
+            <span class="section-tag">06 // Зв'язок</span>
+            <h2>Запустимо ваш проєкт?</h2>
+            <p>Напишіть у двох словах, що потрібно зробити — відповім протягом дня, підкажу найкращий варіант і зорієнтую по термінах.</p>
+
+            <div class="direct-links">
+              <a href="https://t.me/klm_145" target="_blank" class="direct-item magnetic" data-cursor="TG">
+                <span class="direct-label">Telegram (відповідаю найшвидше)</span>
+                <strong>@klm_145 ↗</strong>
+              </a>
+              <a href="mailto:nexorabusiness.wok1@gmail.com" class="direct-item magnetic" data-cursor="MAIL">
+                <span class="direct-label">Електронна пошта</span>
+                <strong>nexorabusiness.wok1@gmail.com</strong>
+              </a>
+            </div>
+          </div>
+
+          <form id="contactForm" class="form">
+            <input type="text" name="name" placeholder="Ваше ім'я" required>
+            <input type="text" name="contact" placeholder="Ваш Telegram (@нік) або телефон" required>
+            <select name="service" id="serviceSelect">
+              <option value="Створення сайту">Лендінг / сайт-візитівка</option>
+              <option value="WOW-сайт з анімаціями">Інтерактивний WOW-сайт (3D + Liquid Glass)</option>
+              <option value="Нарізка відео / банери">Нарізка Reels / Shorts, озвучка, банери</option>
+              <option value="Інше">Інша задача</option>
+            </select>
+            <textarea name="message" rows="4" placeholder="Коротко про ваш бізнес або ідею..."></textarea>
+            <button type="submit" id="submitBtn" class="btn-primary magnetic" data-cursor="SEND">
+              <span>Надіслати заявку</span>
+            </button>
+            <p id="formStatus" class="form-status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Підвал -->
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <a href="#" class="logo">XWARET<span>.</span></a>
+      <p>© 2026 Михайло (Xwaret) • Івано-Франківськ</p>
+      <div class="footer-links">
+        <a href="https://t.me/klm_145" target="_blank">Telegram</a>
+        <a href="mailto:nexorabusiness.wok1@gmail.com">Email</a>
+        <a href="https://mihailo158.github.io/MyFirstWebsite/" target="_blank">Кейс DentaCare</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Бібліотеки: Three.js (3D), GSAP + ScrollTrigger (скрол-анімації), Lenis (плавний скрол) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
